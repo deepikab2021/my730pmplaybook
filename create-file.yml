@@ -1,0 +1,12 @@
+--- #creating a file
+- hosts: webservers
+  become: true
+  connection: ssh
+  user: ansible
+
+
+  tasks:
+    - name: creating a file
+      file:
+        path: /home/ansible/xyzfile
+        state: touch

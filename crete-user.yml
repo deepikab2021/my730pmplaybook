@@ -1,0 +1,9 @@
+--- #creating user task in playbook
+- name: user creation
+  hosts: all
+  become: true
+
+  tasks:
+    - name: creating user
+      user: name=devi
+

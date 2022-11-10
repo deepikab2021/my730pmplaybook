@@ -1,0 +1,13 @@
+--- #installing a s/w
+- name: installing a s/w
+  hosts: webservers
+  connection: ssh
+  become: true
+  user: ansible
+
+
+  tasks:
+    - name: installing a docker software
+      yum:
+        name: docker
+        state: present

@@ -1,0 +1,11 @@
+---
+- hosts: all
+  become: true
+
+
+  tasks:
+    - name: deleting s/w
+      yum:
+        name: httpd
+        state: absent
+

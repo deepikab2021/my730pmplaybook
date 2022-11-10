@@ -1,0 +1,17 @@
+--- # my hadlers section
+- hosts: all
+  connection: ssh
+  user: ansible
+  become: true
+
+
+  tasks:
+    - name: installing httpd s/w
+      action: yum name=httpd state=present
+      notify: start httpd service
+
+
+  handlers:
+
+    - name: start httpd service
+      action: service name=httpd state=started

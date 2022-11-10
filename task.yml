@@ -1,0 +1,10 @@
+--- #my task playbook
+- hosts: all
+  user: ansible
+  connection: ssh
+  become: true
+
+
+  tasks:
+    - name: installing httpd s/w on webservers
+      action: yum pkg=http state=present

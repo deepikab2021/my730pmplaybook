@@ -1,0 +1,4 @@
+- name: installing httpd software into host computers
+  yum:
+    pkg=httpd
+    state=latest

@@ -1,0 +1,13 @@
+--- #creating a directory
+- name: Creating a folder
+  hosts: webservers
+  connection: ssh
+  become: yes
+
+
+  tasks:
+    - name : creating a folder
+      file:
+        path: /home/ansible/tonydir
+        state: directory
+...

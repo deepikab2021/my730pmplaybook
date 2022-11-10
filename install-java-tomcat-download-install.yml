@@ -1,0 +1,47 @@
+--- # install java download tomcat download & install
+- hosts: all
+  become: yes
+  connection: ssh
+  user: ansible
+
+
+  tasks:
+    - name: installing java software on redhat
+      yum:
+        name=java
+        state=present
+      when: ansible_os_family == "RedHat"
+
+
+    - name: instaling java software on debian
+      apt:
+        name=default-jdk
+        state=present
+      when: ansible_os_family == "Debian"
+
+
+    - name: downloading tomcat software
+      get_url:
+        url: https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.83/bin/apache-tomcat-8.5.83.tar.gz
+        dest: /opt
+
+
+    - name: extract tomcat sofrware
+      unarchive:
+        src: /opt/apache-tomcat-8.5.83.tar.gz
+        dest: /opt
+        remote_src: yes
+
+
+
+    - name: providing executable permissions
+      file:
+        path: /opt/apache-tomcat-8.5.83/bin/startup.sh
+        mode: 0777
+
+
+    - name: start tomcat service
+      shell: nohup ./shutdown.sh
+      args:
+        chdir: /opt/apache-tomcat-8.5.83/bin
+

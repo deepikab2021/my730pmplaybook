@@ -1,0 +1,11 @@
+--- #Deleting a folder
+- hosts: all
+  connection: ssh
+  become: true
+
+
+  tasks:
+    - name: Deleting a folder
+      file:
+        path: /home/ansible/dir444
+        state: absent

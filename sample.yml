@@ -1,0 +1,15 @@
+--- # creating file & folder and copy
+- hosts: all
+  become: true
+
+  tasks:
+    - name: creating a file
+      file:
+        path=/home/ansible/hari.txt state=file
+
+    - name: creating a folder
+      file: path=/tmp/haridir state=directory
+
+    - name: copying a file to host computer
+      copy: src=./abc100 dest=/home/ansible
+

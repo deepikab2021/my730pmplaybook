@@ -1,0 +1,41 @@
+---
+- name: my conditional playbook
+  hosts: all
+  become: true
+
+
+  tasks:
+    - name: install httpd package
+      yum:
+        name: httpd
+        state: present
+      when: ansible_os_family == "RedHat"
+
+
+    - name: start the service
+      service:
+        name: httpd
+        state: started
+      when: ansible_os_family == "RedHat"
+
+
+
+    - name: isntall apache2 package
+      apt:
+        name: apache2
+        state: present
+      when: ansible_os_family == "Debian"
+
+
+    - name: start the service
+      service:
+        name: apache2
+        sate: started
+      when: ansible_os_family == "Debian"
+
+    - name: copy index.html into html folder
+      copy:
+        src: /home/ansible/index.html
+        dest: /var/www/html
+        owner: bhoomi
+        mode: 0777

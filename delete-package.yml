@@ -1,0 +1,12 @@
+--- #deleting a s/w
+- hosts: all
+  become: true
+  connection: ssh
+
+
+
+  tasks:
+    - name: deleting a docker s/w
+      yum:
+        name=docker
+        state=absent
